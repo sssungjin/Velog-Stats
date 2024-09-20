@@ -4,103 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Velog 통계</title>
-    <style>
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        padding: 20px;
-        width: 350px;
-        background-color: #f5f5f5;
-        color: #333;
-      }
-      h1 {
-        font-size: 24px;
-        color: #20c997;
-        text-align: center;
-        margin-bottom: 20px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      label {
-        display: block;
-        margin-bottom: 5px;
-        color: #555;
-      }
-      input {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        box-sizing: border-box;
-      }
-      button {
-        width: 100%;
-        padding: 10px;
-        background-color: #20c997;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s;
-      }
-      button:hover {
-        background-color: #18a77b;
-      }
-      #stats {
-        margin-top: 20px;
-        background-color: white;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-      .summary {
-        text-align: center;
-        margin-bottom: 15px;
-      }
-      .summary h2 {
-        color: #20c997;
-        margin-bottom: 10px;
-      }
-      .summary p {
-        margin: 5px 0;
-        font-size: 16px;
-      }
-      .post-item {
-        background-color: #f9f9f9;
-        border-radius: 4px;
-        padding: 10px;
-        margin-bottom: 10px;
-      }
-      .post-item strong {
-        color: #20c997;
-      }
-      .loading {
-        color: #20c997;
-        text-align: center;
-        font-weight: bold;
-      }
-      .error {
-        color: #dc3545;
-        text-align: center;
-        font-weight: bold;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>Velog 통계</h1>
+    <h1>Velog Stats</h1>
     <form id="auth-form">
       <div class="form-group">
-        <label for="userId">아이디:</label>
+        <label for="userId">Velog id:</label>
         <input type="text" id="userId" required />
       </div>
       <div class="form-group">
         <label for="accessToken">Access Token:</label>
         <input type="text" id="accessToken" required />
       </div>
-      <button type="submit">통계 조회</button>
+      <button type="submit">조회하기</button>
     </form>
+    <button id="manual-button">설명서 / 정보</button>
     <div id="stats"></div>
+
+    <div id="manual-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Velog Stats 설명서</h2>
+        <p><strong>아이디:</strong> 본인의 velog 아이디를 입력하세요.</p>
+        <p>
+          <strong>Access Token:</strong> 내 밸로그에 들어가서 F12(개발자 도구)
+          -> 애플리케이션 -> 쿠키 -> access token -> 복사 붙여넣기
+        </p>
+        <p>
+          데이터를 저장하지 않는 HTML, JS로만 이루어져 있기 때문에 안전합니다.
+        </p>
+        <div class="author-info">
+          <p>Made by @sssungjin</p>
+          <p>
+            GitHub:
+            <a
+              href="https://github.com/sssungjin/velog-stats-chrome-extension"
+              target="_blank"
+              >velog-stats-chrome-extension</a
+            >
+          </p>
+          <p>
+            Velog:
+            <a href="https://velog.io/@sssungjin" target="_blank">@sssungjin</a>
+          </p>
+          <p>
+            Email:
+            <a href="mailto:dkdlwls576@gmail.com">dkdlwls576@gmail.com</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <script src="popup.js"></script>
   </body>
 </html>

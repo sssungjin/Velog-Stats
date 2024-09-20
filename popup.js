@@ -1,12 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("auth-form");
   const statsContainer = document.getElementById("stats");
+  const manualButton = document.getElementById("manual-button");
+  const modal = document.getElementById("manual-modal");
+  const closeButton = document.getElementsByClassName("close")[0];
+
+  // 초기에 통계 컨테이너 숨기기
+  statsContainer.style.display = "none";
 
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const userId = document.getElementById("userId").value;
     const accessToken = document.getElementById("accessToken").value;
 
+    statsContainer.style.display = "block";
     statsContainer.innerHTML = "<p class='loading'>통계 조회 중...</p>";
 
     try {
@@ -80,6 +87,20 @@ document.addEventListener("DOMContentLoaded", function () {
       statsContainer.innerHTML = `<p class="error">오류 발생: ${error.message}</p>`;
     }
   });
+
+  manualButton.onclick = function () {
+    modal.style.display = "block";
+  };
+
+  closeButton.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 
   function sendMessage(message) {
     return new Promise((resolve, reject) => {
