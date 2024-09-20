@@ -13,10 +13,6 @@
         <label for="userId">Velog id:</label>
         <input type="text" id="userId" required />
       </div>
-      <div class="form-group">
-        <label for="accessToken">Access Token:</label>
-        <input type="text" id="accessToken" required />
-      </div>
       <button type="submit">조회하기</button>
     </form>
     <button id="manual-button">설명서 / 정보</button>
@@ -28,8 +24,9 @@
         <h2>Velog Stats 설명서</h2>
         <p><strong>아이디:</strong> 본인의 velog 아이디를 입력하세요.</p>
         <p>
-          <strong>Access Token:</strong> 내 밸로그에 들어가서 F12(개발자 도구)
-          -> 애플리케이션 -> 쿠키 -> access token -> 복사 붙여넣기
+          데이터는 쿠키에서 자동으로 가져오므로, Access Token을 직접 입력할
+          필요가 없습니다. Velog를 로그인 후 Velog 사이트에서 프로그램을
+          실행시키면 access_token을 추출할 수 있습니다.
         </p>
         <p>
           데이터를 저장하지 않는 HTML, JS로만 이루어져 있기 때문에 안전합니다.

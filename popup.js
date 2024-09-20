@@ -7,17 +7,29 @@ document.addEventListener("DOMContentLoaded", function () {
 
   statsContainer.style.display = "none";
 
+  let accessToken = "";
+
+  chrome.cookies.get(
+    { url: "https://velog.io", name: "access_token" },
+    function (cookie) {
+      if (cookie) {
+        accessToken = cookie.value; // 쿠키에서 가져온 accessToken을 저장
+      } else {
+        //console.error("Access Token을 쿠키에서 찾을 수 없습니다.");
+      }
+    }
+  );
+
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const userId = document.getElementById("userId").value;
-    const accessToken = document.getElementById("accessToken").value;
 
     statsContainer.style.display = "block";
     statsContainer.innerHTML = "<p class='loading'>통계 조회 중...</p>";
 
     try {
-      if (!userId || !accessToken) {
-        throw new Error("모든 필드를 입력해주세요.");
+      if (!userId) {
+        throw new Error("Velog ID를 입력해주세요.");
       }
 
       let allPosts = [];
