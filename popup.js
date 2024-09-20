@@ -39,7 +39,8 @@ document.addEventListener("DOMContentLoaded", function () {
       for (let [index, post] of allPosts.entries()) {
         try {
           const stats = await fetchPostStats(post.id, accessToken);
-          totalViews += stats.total || 0;
+          post.views = stats.total || 0; // 게시물 객체에 조회수 추가
+          totalViews += post.views;
           totalLikes += post.likes || 0;
           totalComments += post.comments_count || 0;
 
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }/${allPosts.length})</p>`;
         } catch (postError) {
           console.error("Post stats error:", postError);
+          post.views = 0; // 에러 발생 시 조회수를 0으로 설정
         }
       }
 
@@ -67,9 +69,9 @@ document.addEventListener("DOMContentLoaded", function () {
         statsContainer.innerHTML += `
           <div class="post-item">
             <strong>${post.title}</strong><br>
-            조회수: ${post.views || 0}, 좋아요: ${post.likes || 0}, 댓글: ${
-          post.comments_count || 0
-        }
+            조회수: ${post.views.toLocaleString()}, 좋아요: ${
+          post.likes || 0
+        }, 댓글: ${post.comments_count || 0}
           </div>
         `;
       });
