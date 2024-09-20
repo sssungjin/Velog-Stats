@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const modal = document.getElementById("manual-modal");
   const closeButton = document.getElementsByClassName("close")[0];
 
-  // 초기에 통계 컨테이너 숨기기
   statsContainer.style.display = "none";
 
   form.addEventListener("submit", async function (e) {
@@ -60,7 +59,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
-      // 최종 결과 표시
       statsContainer.innerHTML = `
         <div class="summary">
           <h2>총 통계</h2>
