@@ -12,6 +12,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
       .catch((error) => {
         sendResponse({ success: false, error: error.toString() });
       });
-    return true; // 비동기 응답을 위해 true 반환
+    return true;
   }
 });
