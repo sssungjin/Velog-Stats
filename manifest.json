@@ -1,18 +1,26 @@
 {
   "manifest_version": 3,
-  "name": "Velog Stats Tracker",
+  "name": "Velog Stats",
   "version": "1.6",
-  "description": "Velog 블로그의 총 조회수 및 통계를 제공합니다.",
+  "description": "Velog의 총 조회수 등의 통계를 제공합니다.",
   "permissions": ["storage"],
   "host_permissions": ["https://v2.velog.io/*"],
   "action": {
     "default_popup": "popup.html",
-    "default_icon": "icon.png"
+    "default_icon": {
+      "16": "icon16.png",
+      "32": "icon32.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
   },
   "background": {
     "service_worker": "background.js"
   },
   "icons": {
-    "48": "icon.png"
+    "16": "icon16.png",
+    "32": "icon32.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
   }
 }
