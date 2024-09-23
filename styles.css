@@ -150,3 +150,31 @@ button:hover {
 .author-info a:hover {
   text-decoration: underline;
 }
+
+/* 기존 CSS 내용 유지 */
+
+.sort-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.sort-buttons button {
+  margin: 0 5px;
+  padding: 8px 15px;
+  background-color: #20c997;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s;
+}
+
+.sort-buttons button:hover {
+  background-color: #18a77b;
+}
+
+.sort-buttons button:active {
+  transform: scale(0.95);
+}
