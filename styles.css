@@ -80,7 +80,7 @@ button:hover {
 }
 
 .post-item strong {
-  color: #20c997;
+  color: #24c997;
 }
 
 .loading {
@@ -151,8 +151,6 @@ button:hover {
   text-decoration: underline;
 }
 
-/* 기존 CSS 내용 유지 */
-
 .sort-buttons {
   display: flex;
   justify-content: center;
@@ -169,6 +167,7 @@ button:hover {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.1s;
+  font-size: 14px;
 }
 
 .sort-buttons button:hover {
