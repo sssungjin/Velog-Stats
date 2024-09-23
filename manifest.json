@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Velog Stats",
-  "version": "1.6",
+  "version": "1.7",
   "description": "Velog의 총 조회수 등의 통계를 제공합니다.",
   "permissions": ["cookies"],
   "host_permissions": ["https://v2.velog.io/*"],
