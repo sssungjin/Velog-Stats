@@ -8,14 +8,13 @@ document.addEventListener("DOMContentLoaded", function () {
   statsContainer.style.display = "none";
 
   let accessToken = "";
+  let allPosts = [];
 
   chrome.cookies.get(
     { url: "https://velog.io", name: "access_token" },
     function (cookie) {
       if (cookie) {
-        accessToken = cookie.value; // 쿠키에서 가져온 accessToken을 저장
-      } else {
-        //console.error("Access Token을 쿠키에서 찾을 수 없습니다.");
+        accessToken = cookie.value;
       }
     }
   );
@@ -32,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error("Velog ID를 입력해주세요.");
       }
 
-      let allPosts = [];
+      allPosts = [];
       let cursor = null;
       let hasMore = true;
 
@@ -48,55 +47,99 @@ document.addEventListener("DOMContentLoaded", function () {
         statsContainer.innerHTML = `<p class='loading'>게시물 ${allPosts.length}개 로드 중...</p>`;
       }
 
-      let totalViews = 0;
-      let totalLikes = 0;
-      let totalComments = 0;
-
-      statsContainer.innerHTML = `<p class='loading'>게시물 통계 처리 중... (0/${allPosts.length})</p>`;
-
-      for (let [index, post] of allPosts.entries()) {
-        try {
-          const stats = await fetchPostStats(post.id, accessToken);
-          post.views = stats.total || 0; // 게시물 객체에 조회수 추가
-          totalViews += post.views;
-          totalLikes += post.likes || 0;
-          totalComments += post.comments_count || 0;
-
-          statsContainer.innerHTML = `<p class='loading'>게시물 통계 처리 중... (${
-            index + 1
-          }/${allPosts.length})</p>`;
-        } catch (postError) {
-          console.error("Post stats error:", postError);
-          post.views = 0; // 에러 발생 시 조회수를 0으로 설정
-        }
-      }
-
-      statsContainer.innerHTML = `
-        <div class="summary">
-          <h2>총 통계</h2>
-          <p>총 게시물 수: ${allPosts.length}</p>
-          <p>총 조회수: ${totalViews.toLocaleString()}</p>
-          <p>총 좋아요: ${totalLikes.toLocaleString()}</p>
-          <p>총 댓글: ${totalComments.toLocaleString()}</p>
-        </div>
-        <h3>게시물 별 통계</h3>
-      `;
-
-      allPosts.forEach((post, index) => {
-        statsContainer.innerHTML += `
-          <div class="post-item">
-            <strong>${post.title}</strong><br>
-            조회수: ${post.views.toLocaleString()}, 좋아요: ${
-          post.likes || 0
-        }, 댓글: ${post.comments_count || 0}
-          </div>
-        `;
-      });
+      await fetchAllPostStats();
+      displayStats();
     } catch (error) {
       console.error("Main error:", error);
       statsContainer.innerHTML = `<p class="error">오류 발생: ${error.message}</p>`;
     }
   });
+
+  async function fetchAllPostStats() {
+    let totalViews = 0;
+    let totalLikes = 0;
+    let totalComments = 0;
+
+    statsContainer.innerHTML = `<p class='loading'>게시물 통계 처리 중... (0/${allPosts.length})</p>`;
+
+    for (let [index, post] of allPosts.entries()) {
+      try {
+        const stats = await fetchPostStats(post.id, accessToken);
+        post.views = stats.total || 0;
+        totalViews += post.views;
+        totalLikes += post.likes || 0;
+        totalComments += post.comments_count || 0;
+
+        statsContainer.innerHTML = `<p class='loading'>게시물 통계 처리 중... (${
+          index + 1
+        }/${allPosts.length})</p>`;
+      } catch (postError) {
+        console.error("Post stats error:", postError);
+        post.views = 0;
+      }
+    }
+
+    return { totalViews, totalLikes, totalComments };
+  }
+
+  function displayStats(sortedPosts = null) {
+    const postsToDisplay = sortedPosts || allPosts;
+    const { totalViews, totalLikes, totalComments } = postsToDisplay.reduce(
+      (acc, post) => ({
+        totalViews: acc.totalViews + post.views,
+        totalLikes: acc.totalLikes + (post.likes || 0),
+        totalComments: acc.totalComments + (post.comments_count || 0),
+      }),
+      { totalViews: 0, totalLikes: 0, totalComments: 0 }
+    );
+
+    statsContainer.innerHTML = `
+      <div class="summary">
+        <h2>총 통계</h2>
+        <p>총 게시물 수: ${postsToDisplay.length}</p>
+        <p>총 조회수: ${totalViews.toLocaleString()}</p>
+        <p>총 좋아요: ${totalLikes.toLocaleString()}</p>
+        <p>총 댓글: ${totalComments.toLocaleString()}</p>
+        <div class="sort-buttons">
+          <button id="sort-views">조회수 순</button>
+          <button id="sort-likes">좋아요 순</button>
+          <button id="sort-comments">댓글 순</button>
+        </div>
+      </div>
+      <h3>게시물 별 통계</h3>
+    `;
+
+    postsToDisplay.forEach((post) => {
+      statsContainer.innerHTML += `
+        <div class="post-item">
+          <strong>${post.title}</strong><br>
+          조회수: ${post.views.toLocaleString()}, 좋아요: ${
+        post.likes || 0
+      }, 댓글: ${post.comments_count || 0}
+        </div>
+      `;
+    });
+
+    // Add event listeners to sort buttons
+    document.getElementById("sort-views").addEventListener("click", () => {
+      const sortedPosts = [...allPosts].sort((a, b) => b.views - a.views);
+      displayStats(sortedPosts);
+    });
+
+    document.getElementById("sort-likes").addEventListener("click", () => {
+      const sortedPosts = [...allPosts].sort(
+        (a, b) => (b.likes || 0) - (a.likes || 0)
+      );
+      displayStats(sortedPosts);
+    });
+
+    document.getElementById("sort-comments").addEventListener("click", () => {
+      const sortedPosts = [...allPosts].sort(
+        (a, b) => (b.comments_count || 0) - (a.comments_count || 0)
+      );
+      displayStats(sortedPosts);
+    });
+  }
 
   manualButton.onclick = function () {
     modal.style.display = "block";
