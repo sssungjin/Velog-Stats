@@ -14,7 +14,7 @@
 ## 설치
 
 Chrome 웹 스토어에서 **Velog Stats**를 다운로드할 수 있습니다:  
-[Velog Stats Chrome Extension 다운로드](https://chromewebstore.google.com/detail/velog-stats/dgdmogoodedabnaklhlohncclnjalfad?authuser=0&hl=en)
+[Velog Stats Chrome Extension Download](https://chromewebstore.google.com/detail/velog-stats/dgdmogoodedabnaklhlohncclnjalfad?authuser=0&hl=en)
 
 ## 사용 방법
 
