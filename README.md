@@ -32,13 +32,20 @@ Chrome 웹 스토어에서 **Velog Stats**를 다운로드할 수 있습니다:
 
 **현재 버전: 1.7.1**
 
+## 개인정보 처리 방침
+
+Privacy Policy(개인정보 처리 방침) for Velog Stats는 [Privacy Policy](https://sssungjin.github.io/velog-stats-chrome-extension/privacy-policy) 페이지에서 확인 할 수 있습니다.
+
 ## Release Note
+
 ### 1.6 Version
+
 - Velog의 게시물 조회수, 좋아요, 댓글 수 등 통계 제공
 - 모든 게시물에 대한 통계를 한번에 불러오기
 - Velog의 `access_token` 쿠키를 자동으로 가져와 인증 처리
 
 ### 1.7 Version
+
 - 게시물 정렬 기능 추가
   정렬 기준
   - 조회 수
@@ -47,5 +54,7 @@ Chrome 웹 스토어에서 **Velog Stats**를 다운로드할 수 있습니다:
 - 문법 상 어색한 문장 수정
 
 ### 1.7.1 Version
+
 기능 변경 없음
+
 - Web Store 이미지 변경
