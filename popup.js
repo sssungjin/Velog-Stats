@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     statsContainer.innerHTML = `
       <div class="summary">
-        <h2>총 통계</h2>
+        <h2>통계</h2>
         <p>총 게시물 수: ${postsToDisplay.length}</p>
         <p>총 조회수: ${totalViews.toLocaleString()}</p>
         <p>총 좋아요: ${totalLikes.toLocaleString()}</p>
