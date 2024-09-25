@@ -1,4 +1,4 @@
-# Velog Stats Chrome Extension
+# Velog Stats
 
 ## 소개
 
