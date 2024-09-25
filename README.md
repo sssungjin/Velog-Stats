@@ -34,7 +34,7 @@ Chrome 웹 스토어에서 **Velog Stats**를 다운로드할 수 있습니다:
 
 ## 개인정보 처리 방침
 
-Privacy Policy for Velog Stats는 [Privacy Policy](https://sssungjin.github.io/velog-stats-chrome-extension/privacy-policy) 페이지에서 확인 할 수 있습니다.
+Privacy Policy for Velog Stats는 [Privacy Policy](https://sssungjin.github.io/Velog-Stats/privacy-policy) 페이지에서 확인 할 수 있습니다.
 
 ## Release Note
 
