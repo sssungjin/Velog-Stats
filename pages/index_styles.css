@@ -12,11 +12,13 @@ body {
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  position: relative;
+  border-radius: 8px;
 }
 
 h1,
 h2 {
-  color: #2c974b;
+  color: #000000;
   text-align: center;
 }
 
@@ -27,7 +29,7 @@ header {
 
 h3,
 h4 {
-  color: #2c974b;
+  color: #000000;
 }
 
 ul,
@@ -43,7 +45,7 @@ footer {
 }
 
 footer a {
-  color: #2c974b;
+  color: #000000;
   text-decoration: none;
 }
 
@@ -51,30 +53,43 @@ footer a:hover {
   text-decoration: underline;
 }
 
-.btn {
+.btn,
+.btn-secondary {
   display: inline-block;
-  padding: 10px 20px;
-  background-color: #4caf50;
+  padding: 10px 15px;
   color: white;
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
 }
 
-.btn:hover {
-  background-color: #45a049;
+.btn {
+  background-color: #007bff;
 }
 
 .btn-secondary {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #2196f3;
-  color: white;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
+  background-color: #007bff;
 }
 
+.btn:hover,
 .btn-secondary:hover {
-  background-color: #0b7dda;
+  opacity: 0.9;
+}
+
+.home-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
 }
