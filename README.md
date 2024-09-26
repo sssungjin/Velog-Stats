@@ -1,7 +1,5 @@
 # Velog Stats
 
-# Velog Stats
-
 ## 소개
 
 **Velog Stats**는 Velog 블로그의 통계를 간편하게 확인할 수 있는 Chrome 확장 프로그램입니다.  
@@ -9,8 +7,8 @@
 
 ## 프로젝트 상세 페이지
 
-자세한 설명 및 기능 소개는 아래 링크에서 확인할 수 있습니다:
-[Velog Stats 프로젝트 페이지](https://sssungjin.github.io/Velog-Stats/)
+자세한 설명 및 기능 소개는 아래 링크에서 확인할 수 있습니다:  
+[Velog Stats 프로젝트 소개 페이지로 이동](https://sssungjin.github.io/Velog-Stats/pages/index.html)
 
 ## 주요 기능
 
