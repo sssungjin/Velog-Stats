@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const manualButton = document.getElementById("manual-button");
   const modal = document.getElementById("manual-modal");
   const closeButton = document.getElementsByClassName("close")[0];
+  const viewLogsButton = document.createElement("button");
+  viewLogsButton.textContent = "로그";
+  viewLogsButton.id = "view-logs-button";
+  form.appendChild(viewLogsButton);
 
   statsContainer.style.display = "none";
 
@@ -47,8 +51,9 @@ document.addEventListener("DOMContentLoaded", function () {
         statsContainer.innerHTML = `<p class='loading'>게시물 ${allPosts.length}개 로드 중...</p>`;
       }
 
-      await fetchAllPostStats();
+      const stats = await fetchAllPostStats();
       displayStats();
+      saveLog(userId, stats);
     } catch (error) {
       console.error("Main error:", error);
       statsContainer.innerHTML = `<p class="error">오류 발생: ${error.message}</p>`;
@@ -222,5 +227,107 @@ document.addEventListener("DOMContentLoaded", function () {
       throw new Error(response.errors[0].message);
     }
     return response.data.getStats;
+  }
+
+  // 새로운 함수: 로그 저장
+  function saveLog(userId, stats) {
+    const log = {
+      userId: userId,
+      timestamp: new Date().toISOString(),
+      totalViews: stats.totalViews,
+      totalLikes: stats.totalLikes,
+      totalComments: stats.totalComments,
+    };
+
+    chrome.storage.local.get(["logs"], function (result) {
+      let logs = result.logs || [];
+      logs.push(log);
+      chrome.storage.local.set({ logs: logs }, function () {
+        console.log("Log saved");
+      });
+    });
+  }
+
+  viewLogsButton.addEventListener("click", function (e) {
+    e.preventDefault(); // 폼 제출 방지
+    displayLogs();
+  });
+
+  // 정렬 상태 변수 (기본값: 내림차순)
+  let isAscending = false;
+
+  // ... (이전 코드 유지)
+
+  function displayLogs() {
+    chrome.storage.local.get(["logs"], function (result) {
+      let logs = result.logs || [];
+
+      logs = logs.map((log, index) => ({ ...log, originalIndex: index }));
+
+      logs.sort((a, b) => {
+        return isAscending
+          ? new Date(a.timestamp) - new Date(b.timestamp)
+          : new Date(b.timestamp) - new Date(a.timestamp);
+      });
+
+      let logsHtml = `
+        <div class="log-header-container">
+          <button id="sort-button" class="sort-btn">
+            시간순 정렬: ${isAscending ? "▲" : "▼"}
+          </button>
+        </div>
+      `;
+
+      logs.forEach((log, displayIndex) => {
+        logsHtml += `
+          <div class="log-card" data-index="${log.originalIndex}">
+            <div class="log-content">
+              <span class="log-item"><strong>조회 시간:</strong> ${new Date(
+                log.timestamp
+              ).toLocaleString()}</span>
+              <span class="log-item"><strong>총 조회수:</strong> ${log.totalViews.toLocaleString()}</span>
+              <span class="log-item"><strong>총 좋아요:</strong> ${log.totalLikes.toLocaleString()}</span>
+              <span class="log-item"><strong>총 댓글:</strong> ${log.totalComments.toLocaleString()}</span>
+            </div>
+            <button class="delete-log-btn" data-index="${
+              log.originalIndex
+            }">🗑️</button>
+          </div>
+        `;
+      });
+
+      statsContainer.innerHTML = logsHtml;
+      statsContainer.style.display = "block";
+
+      document
+        .getElementById("sort-button")
+        .addEventListener("click", function () {
+          isAscending = !isAscending;
+          displayLogs();
+        });
+
+      document.querySelectorAll(".delete-log-btn").forEach((btn) => {
+        btn.addEventListener("click", function (event) {
+          event.stopPropagation();
+          const index = parseInt(this.getAttribute("data-index"));
+          deleteLog(index);
+        });
+      });
+    });
+  }
+
+  function deleteLog(index) {
+    chrome.storage.local.get(["logs"], function (result) {
+      let logs = result.logs || [];
+      if (index >= 0 && index < logs.length) {
+        logs.splice(index, 1);
+        chrome.storage.local.set({ logs: logs }, function () {
+          console.log("Log deleted");
+          displayLogs();
+        });
+      } else {
+        console.error("Invalid log index");
+      }
+    });
   }
 });
