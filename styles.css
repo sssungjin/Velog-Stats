@@ -177,3 +177,106 @@ button:hover {
 .sort-buttons button:active {
   transform: scale(0.95);
 }
+
+h3 {
+  font-size: 1.6em; /* 제목 크기 */
+  margin-bottom: 1em;
+  color: #333; /* 어두운 색 */
+  border-bottom: 2px solid #58a8fd; /* 밑줄 */
+  padding-bottom: 0.5em;
+}
+
+.log-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.log-header-title {
+  font-size: 1.2em;
+  color: #333;
+  margin: 0;
+}
+
+.sort-btn {
+  font-size: 1.2em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #449eff;
+  padding: 5px 10px;
+  transition: color 0.3s;
+}
+
+.sort-btn:hover {
+  color: #0c8dff;
+}
+
+.log-card {
+  position: relative;
+  background-color: #f9f9f9;
+  border-left: 4px solid #3498db;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  padding: 15px;
+  padding-bottom: 35px; /* 버튼을 위한 공간을 약간 줄임 */
+  transition: box-shadow 0.3s;
+}
+
+.log-card:hover {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.delete-log-btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+  padding: 5px 10px;
+  line-height: 1;
+}
+
+.delete-log-btn:hover {
+  opacity: 1;
+}
+
+.log-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3em;
+}
+
+.log-item {
+  font-size: 0.9em;
+  color: #414141;
+}
+
+.log-item strong {
+  color: #333;
+  font-weight: bold;
+}
+
+button:not(.sort-btn):not(.delete-log-btn):hover {
+  background-color: #18a77b;
+}
+
+.sort-btn:hover,
+.delete-log-btn:hover {
+  background-color: transparent;
+}
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px; /* 필요에 따라 간격 조정 */
+}
+
+.button-container button {
+  margin-right: 10px; /* 버튼 사이에 간격 추가 */
+}
