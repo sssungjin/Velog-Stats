@@ -249,14 +249,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   viewLogsButton.addEventListener("click", function (e) {
-    e.preventDefault(); // 폼 제출 방지
+    e.preventDefault();
     displayLogs();
   });
 
-  // 정렬 상태 변수 (기본값: 내림차순)
   let isAscending = false;
-
-  // ... (이전 코드 유지)
 
   function displayLogs() {
     chrome.storage.local.get(["logs"], function (result) {
