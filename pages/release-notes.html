@@ -52,24 +52,87 @@
 
       <section class="release-notes">
         <h2>버전 1.8.0</h2>
+        <p><strong>주요 변경사항:</strong> 로그 관리 기능 추가</p>
         <ul>
-          <li>Chrome Storage를 사용하여 조회한 로그 저장 및 삭제 기능 추가</li>
+          <li>
+            Chrome Storage 활용
+            <ul>
+              <li>조회한 로그 저장 기능</li>
+              <li>저장된 로그 삭제 기능</li>
+            </ul>
+          </li>
         </ul>
 
         <h2>버전 1.7.1</h2>
-        <p>기능 변경 없음 - Web Store 이미지 변경</p>
+        <p><strong>주요 변경사항:</strong> 기능 변경 없음, UI 개선</p>
+        <ul>
+          <li>Web Store 이미지 변경</li>
+        </ul>
 
         <h2>버전 1.7</h2>
+        <p>
+          <strong>주요 변경사항:</strong> 게시물 정렬 기능 추가 및 문구 개선
+        </p>
         <ul>
-          <li>게시물 정렬 기능 추가 (조회 수, 댓글 수, 좋아요 수)</li>
+          <li>
+            게시물 정렬 기능
+            <ul>
+              <li>조회수 기준 정렬</li>
+              <li>댓글 수 기준 정렬</li>
+              <li>좋아요 수 기준 정렬</li>
+            </ul>
+          </li>
           <li>문법 상 어색한 문장 수정</li>
         </ul>
 
         <h2>버전 1.6</h2>
+        <p>
+          <strong>주요 변경사항:</strong> Velog 통계 기능 구현, access token
+          자동 추출로 사용자 경험 개선
+        </p>
         <ul>
-          <li>Velog의 게시물 조회수, 좋아요, 댓글 수 등 통계 제공</li>
-          <li>모든 게시물에 대한 통계를 한번에 불러오기</li>
-          <li>Velog의 <code>access_token</code> 쿠키 값을 가져와 인증 처리</li>
+          <li>
+            게시물 통계 제공
+            <ul>
+              <li>조회수</li>
+              <li>좋아요 수</li>
+              <li>댓글 수</li>
+            </ul>
+          </li>
+          <li>모든 게시물에 대한 통계를 한번에 불러오기 기능</li>
+          <li>Velog의 <code>access_token</code> 쿠키 값을 사용한 인증 처리</li>
+        </ul>
+
+        <h2>Demo 버전</h2>
+        <p>
+          <strong>주요 기능:</strong> Velog ID와 access token을 직접 입력하여
+          통계 조회
+        </p>
+        <ul>
+          <li>
+            사용자 입력 필드
+            <ul>
+              <li>Velog ID 입력란</li>
+              <li>Access Token 입력란</li>
+            </ul>
+          </li>
+          <li>
+            통계 조회 기능
+            <ul>
+              <li>입력된 ID와 token을 사용하여 Velog API 호출</li>
+              <li>게시물 목록 및 각 게시물의 상세 통계 조회</li>
+            </ul>
+          </li>
+          <li>
+            표시 정보
+            <ul>
+              <li>총 게시물 수</li>
+              <li>총 조회수</li>
+              <li>총 좋아요 수</li>
+              <li>총 댓글 수</li>
+              <li>게시물 별 상세 통계 (제목, 조회수, 좋아요 수, 댓글 수)</li>
+            </ul>
+          </li>
         </ul>
       </section>
     </div>
