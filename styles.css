@@ -179,10 +179,9 @@ button:hover {
 }
 
 h3 {
-  font-size: 1.6em; /* 제목 크기 */
+  font-size: 1.6em;
   margin-bottom: 1em;
-  color: #333; /* 어두운 색 */
-  border-bottom: 2px solid #58a8fd; /* 밑줄 */
+  color: #333;
   padding-bottom: 0.5em;
 }
 
@@ -220,7 +219,7 @@ h3 {
   border-radius: 6px;
   margin-bottom: 15px;
   padding: 15px;
-  padding-bottom: 35px; /* 버튼을 위한 공간을 약간 줄임 */
+  padding-bottom: 35px;
   transition: box-shadow 0.3s;
 }
 
@@ -274,9 +273,9 @@ button:not(.sort-btn):not(.delete-log-btn):hover {
 .button-container {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px; /* 필요에 따라 간격 조정 */
+  margin-top: 10px;
 }
 
 .button-container button {
-  margin-right: 10px; /* 버튼 사이에 간격 추가 */
+  margin-right: 10px;
 }
