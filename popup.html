@@ -10,8 +10,13 @@
     <h1>Velog Stats</h1>
     <form id="auth-form">
       <div class="form-group">
-        <label for="userId">Velog id:</label>
-        <input type="text" id="userId" required />
+        <label for="userId">Velog ID:</label>
+        <input
+          type="text"
+          id="userId"
+          placeholder="로그인된 Velog ID를 입력하세요."
+          required
+        />
       </div>
       <button type="submit">조회하기</button>
     </form>
@@ -22,20 +27,22 @@
       <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Velog Stats 설명서</h2>
-        <p><strong>아이디:</strong> 본인의 velog 아이디를 입력하세요.</p>
+        <p>Velog ID: 본인의 Velog ID를 입력하세요.</p>
+        <p>
+          나의 ID 확인하기: Velog 로그인 > 내 벨로그 > url 확인
+          (velog.io/@{ID}/posts)
+        </p>
         <p>
           Velog를 로그인 후 Velog 사이트에서 프로그램을 실행시키면
-          access_token을 추출하여 api를 호출 후 통계를 내는 프로그램입니다.
+          access_token을 추출하여 api를 호출 하여 Velog의 통계를 볼 수 있는
+          Chrome Extension 입니다.
         </p>
-        <p>토큰 데이터를 저장하지 않는 HTML, JS로만 이루어져 있습니다.</p>
+        <p>데이터를 저장하지 않는 HTML, JS로만 이루어져 있습니다.</p>
         <div class="author-info">
-          <p>Made by @sssungjin</p>
           <p>
             GitHub:
-            <a
-              href="https://github.com/sssungjin/velog-stats-chrome-extension"
-              target="_blank"
-              >velog-stats-chrome-extension</a
+            <a href="https://github.com/sssungjin/Velog-Stats" target="_blank"
+              >Velog Stats</a
             >
           </p>
           <p>
@@ -50,6 +57,6 @@
       </div>
     </div>
 
-    <script src="popup.js"></script>
+    <script type="module" src="popup.js"></script>
   </body>
 </html>
