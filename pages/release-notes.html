@@ -51,6 +51,32 @@
       </header>
 
       <section class="release-notes">
+        <h2>버전 1.8.1</h2>
+        <p>
+          <strong>주요 변경사항:</strong> 기능 변경 없음, 코드 리팩토링 및 구조
+          개선
+        </p>
+        <ul>
+          <li>
+            파일 분리: 기능별로 다음 파일들로 분리
+            <ul>
+              <li>popup.js</li>
+              <li>api.js</li>
+              <li>utils.js</li>
+              <li>logManager.js</li>
+            </ul>
+          </li>
+          <li>
+            모듈 시스템 도입
+            <ul>
+              <li>코드 재사용성 향상</li>
+              <li>유지보수성 개선</li>
+            </ul>
+          </li>
+          <li>UI: 게시물 별 통계 제목의 파란색 밑줄 제거</li>
+          <li>설명서 상세화</li>
+        </ul>
+
         <h2>버전 1.8.0</h2>
         <p><strong>주요 변경사항:</strong> 로그 관리 기능 추가</p>
         <ul>
@@ -99,21 +125,24 @@
               <li>댓글 수</li>
             </ul>
           </li>
-          <li>모든 게시물에 대한 통계를 한번에 불러오기 기능</li>
-          <li>Velog의 <code>access_token</code> 쿠키 값을 사용한 인증 처리</li>
+          <li>모든 게시물에 대한 통계 한번에 불러오기 기능</li>
+          <li>
+            chrome.cookie get API를 사용한 <code>access_token</code> 인증 과정
+            자동화
+          </li>
         </ul>
 
         <h2>Demo 버전</h2>
         <p>
-          <strong>주요 기능:</strong> Velog ID와 access token을 직접 입력하여
-          통계 조회
+          <strong>주요 기능:</strong> Velog ID와 access token을 입력하여 통계
+          조회
         </p>
         <ul>
           <li>
-            사용자 입력 필드
+            사용자 입력
             <ul>
-              <li>Velog ID 입력란</li>
-              <li>Access Token 입력란</li>
+              <li>Velog ID</li>
+              <li>Access Token</li>
             </ul>
           </li>
           <li>
