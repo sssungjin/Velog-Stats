@@ -20,8 +20,15 @@
       </div>
       <button type="submit">조회하기</button>
     </form>
-    <button id="manual-button">설명서 / 정보</button>
+    <div class="button-container">
+      <button id="view-logs-button">로그</button>
+      <button id="view-chart-button">차트 보기</button>
+      <button id="manual-button">설명서</button>
+    </div>
     <div id="stats"></div>
+    <div id="chart-container" style="display: none">
+      <canvas id="myChart"></canvas>
+    </div>
 
     <div id="manual-modal" class="modal">
       <div class="modal-content">
@@ -37,7 +44,25 @@
           access_token을 추출하여 api를 호출 하여 Velog의 통계를 볼 수 있는
           Chrome Extension 입니다.
         </p>
-        <p>데이터를 저장하지 않는 HTML, JS로만 이루어져 있습니다.</p>
+        <div class="warning-section">
+          <h4>⚠️ 로그 데이터 보관 안내</h4>
+          <p>
+            조회된 통계 로그는 다른 서버가 아닌 사용자의 Chrome 브라우저에만
+            안전하게 저장됩니다. 다만, 아래의 경우에는 데이터가 삭제될 수 있으니
+            주의해 주세요.
+          </p>
+          <ul>
+            <li>
+              <b>확장 프로그램을 삭제하는 경우:</b> 프로그램을 Chrome에서 완전히
+              삭제하면 모든 로그 기록도 함께 영구적으로 삭제됩니다.
+            </li>
+            <li>
+              <b>브라우저 데이터를 삭제하는 경우:</b> Chrome의 '인터넷 사용 기록
+              삭제' 기능으로 '쿠키 및 기타 사이트 데이터'를 청소하면 로그가
+              지워질 수 있습니다.
+            </li>
+          </ul>
+        </div>
         <div class="author-info">
           <p>
             GitHub:
@@ -57,6 +82,7 @@
       </div>
     </div>
 
+    <script src="lib/chart.umd.js"></script>
     <script type="module" src="popup.js"></script>
   </body>
 </html>
