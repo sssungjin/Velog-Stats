@@ -1,19 +1,17 @@
 import { fetchPosts, fetchPostStats } from "./api.js";
 import { displayStats, displayLogs } from "./utils.js";
 import { saveLog } from "./logManager.js";
+import { displayChart } from "./chart.js";
 
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.getElementById("auth-form");
   const statsContainer = document.getElementById("stats");
   const manualButton = document.getElementById("manual-button");
+  const viewChartButton = document.getElementById("view-chart-button");
+  const viewLogsButton = document.getElementById("view-logs-button");
+  const chartContainer = document.getElementById("chart-container");
   const modal = document.getElementById("manual-modal");
   const closeButton = document.getElementsByClassName("close")[0];
-  const viewLogsButton = document.createElement("button");
-  viewLogsButton.textContent = "로그";
-  viewLogsButton.id = "view-logs-button";
-  form.appendChild(viewLogsButton);
-
-  statsContainer.style.display = "none";
 
   let accessToken = "";
   let allPosts = [];
@@ -27,12 +25,14 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   );
 
+  // 조회하기 버튼
   form.addEventListener("submit", async function (e) {
     e.preventDefault();
     const userId = document.getElementById("userId").value;
 
     statsContainer.style.display = "block";
     statsContainer.innerHTML = "<p class='loading'>통계 조회 중...</p>";
+    chartContainer.style.display = "none";
 
     try {
       if (!userId) {
@@ -96,22 +96,36 @@ document.addEventListener("DOMContentLoaded", function () {
     return { totalViews, totalLikes, totalComments };
   }
 
-  manualButton.onclick = function () {
+  // 로그 버튼
+  viewLogsButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    chartContainer.style.display = "none";
+    statsContainer.style.display = "block";
+    displayLogs(statsContainer);
+  });
+
+  // 차트 보기 버튼
+  viewChartButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    statsContainer.style.display = "none";
+    chartContainer.style.display = "block";
+    displayChart();
+  });
+
+  // 설명서/정보 버튼
+  manualButton.addEventListener("click", function (e) {
+    e.preventDefault();
     modal.style.display = "block";
-  };
+  });
 
-  closeButton.onclick = function () {
-    modal.style.display = "none";
-  };
-
+  if (closeButton) {
+    closeButton.onclick = function () {
+      modal.style.display = "none";
+    };
+  }
   window.onclick = function (event) {
     if (event.target == modal) {
       modal.style.display = "none";
     }
   };
-
-  viewLogsButton.addEventListener("click", function (e) {
-    e.preventDefault();
-    displayLogs(statsContainer);
-  });
 });
