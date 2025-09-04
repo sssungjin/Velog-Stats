@@ -279,3 +279,11 @@ button:not(.sort-btn):not(.delete-log-btn):hover {
 .button-container button {
   margin-right: 10px;
 }
+
+#chart-container {
+  margin-top: 20px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
