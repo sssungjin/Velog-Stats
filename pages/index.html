@@ -116,7 +116,7 @@
 
       <section class="release-notes">
         <h2>버전</h2>
-        <h3>현재 버전: 1.8.1</h3>
+        <h3>현재 버전: <span id="version">로딩 중...</span></h3>
         <a href="release-notes.html" class="btn-secondary">Release Note</a>
       </section>
 
@@ -126,5 +126,17 @@
         </p>
       </footer>
     </div>
+
+    <script>
+      fetch("../manifest.json")
+        .then((response) => response.json())
+        .then((data) => {
+          document.getElementById("version").textContent = data.version;
+        })
+        .catch((error) => {
+          console.error("버전을 불러오는 중 오류 발생:", error);
+          document.getElementById("version").textContent = "오류";
+        });
+    </script>
   </body>
 </html>
